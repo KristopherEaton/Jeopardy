@@ -249,7 +249,19 @@ function getResult() {
       }
       
     }, 100);
-    alert("Wrong answer, you idiot");
+
+    var response = parseInt((Math.random() * (3-1 + 1)), 10)+ 1;
+    console.log(response)
+    if (response == 1){
+      alert("Wrong answer, you idiot");
+    }
+    if (response == 2){
+      alert("Go study again... moron");
+    }
+    if (response == 3){
+      alert("Wow did not realize intellignece levels could drop so low....");
+    }
+    
   }
   cardOfButton.removeEventListener("click", flipCard);
   
