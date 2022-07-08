@@ -34,13 +34,13 @@ const jeopardyCategories = [
     questions: [
       {
         question: 'Where can you safely store dirt removed from a trench or hole?',
-        answers: ['2 or more feet from the edge', 'In piles right next to trench exit'],
+        answers: ['2 or more feet from the edge', 'In piles right next to trench exit','In trench or hole'],
         correct: '2 or more feet from the edge',
         level: 'easy',
       },
       {
         question: 'Wheres the furthest distance you should ever be from an escape route while working in a trench?',
-        answers: ['25 feet', '100 feet'],
+        answers: ['12 feet','25 feet', '100 feet'],
         correct: '25 feet',
         level: 'medium',
       },
@@ -57,19 +57,19 @@ const jeopardyCategories = [
     questions: [
       {
         question: 'If you are working more than this number of feet above the ground, OSHA requires you to be protected by a fall protection system of some kind.?',
-        answers: ['6 feet', '12 feet'],
+        answers: ['6 feet', '12 feet', '14 feet'],
         correct: '6 feet',
         level: 'easy',
       },
       {
         question: 'What size ladder should you use to work on something 10 feet above the ground?',
-        answers: ['12 feet', '13 feet'],
+        answers: ['11 feet','12 feet', '13 feet'],
         correct: '13 feet',
         level: 'hard',
       },
       {
         question: 'If stairs have ____ or more risers, they must have a handrail.',
-        answers: ['4', '10'],
+        answers: ['4', '10', '12'],
         correct: '4',
         level: 'medium',
       },
@@ -80,19 +80,19 @@ const jeopardyCategories = [
     questions: [
       {
         question: 'What is the leading cause of most construction site fatalities?',
-        answers: ['Trench collapses', 'Falls'],
+        answers: ['Electrocution','Trench collapses', 'Falls'],
         correct: 'Falls',
         level: 'easy',
       },
       {
         question: 'What does the "E" in PPE stand for?',
-        answers: ['Effort', 'Equipment'],
+        answers: ['Effort', 'Equipment', 'Enclosement'],
         correct: 'Equipment',
         level: 'medium',
       },
       {
         question: 'What is the closest you can generally build a scaffold near a power line?',
-        answers: ['6 feet', '10 feet'],
+        answers: ['6 feet', '10 feet','12 feet'],
         correct: '10 feet',
         level: 'hard',
       },
@@ -103,7 +103,7 @@ const jeopardyCategories = [
     questions: [
       {
         question: 'How many feet can you dig a trench before you need to install a protective system of some kind?',
-        answers: ['5', '10'],
+        answers: ['3','5', '10'],
         correct: '5',
         level: 'easy',
       },
@@ -115,7 +115,7 @@ const jeopardyCategories = [
       },
       {
         question: 'Scaffolds must be designed to carry how many times the load to meet OSHA guidlines?',
-        answers: ['x4', 'x10'],
+        answers: ['x2', 'x4', 'x10'],
         correct: 'x10',
         level: 'hard',
       },
@@ -153,6 +153,7 @@ function addCategory(category) {
     card.setAttribute('data-answer-1', question.answers[0])
     card.setAttribute('data-answer-2', question.answers[1])
     card.setAttribute('data-answer-3', question.answers[2])
+    card.setAttribute('data-answer-4', question.answers[3])
 
 
     card.setAttribute('data-correct', question.correct)
@@ -175,18 +176,22 @@ function flipCard() {
   const firstButton = document.createElement('button')
   const secondButton = document.createElement('button')
   const thirdButton = document.createElement('button')
+  const fourthButton = document.createElement('button')
   
   firstButton.classList.add('first-button')
   secondButton.classList.add('second-button')
   thirdButton.classList.add('third-button')
+  fourthButton.classList.add('fourth-button')
   
   firstButton.innerHTML = this.getAttribute('data-answer-1')
   secondButton.innerHTML = this.getAttribute('data-answer-2')
   thirdButton.innerHTML = this.getAttribute('data-answer-3')
+  fourthButton.innerHTML = this.getAttribute('data-answer-4')
   
   firstButton.addEventListener('click', getResult)
   secondButton.addEventListener('click', getResult)
   thirdButton.addEventListener('click', getResult)
+  fourthButton.addEventListener('click', getResult)
 
   this.append(textDisplay, firstButton, secondButton, thirdButton)
   textDisplay.innerHTML = this.getAttribute('data-question')

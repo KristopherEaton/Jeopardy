@@ -3,7 +3,7 @@
 body {
   margin: 0;
   padding: 0;
-  background-color: rgb(46, 46, 46);
+  background-color: rgb(32, 32, 32);
   color: rgb(255, 255, 255);
   display: flex;
   justify-content: center;
@@ -14,7 +14,7 @@ body {
 
 .card {
   width: 260px;
-  height: 180px;
+  height: 150px;
   background-color: rgb(26, 26, 255);
   border-left: solid rgb(19, 19, 160) 10px;
   border-right: solid rgb(11, 11, 91) 10px;
