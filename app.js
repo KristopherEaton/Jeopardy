@@ -247,8 +247,9 @@ function getResult() {
       while (cardOfButton.firstChild) {
         cardOfButton.removeChild(cardOfButton.lastChild);
       }
-      cardOfButton.innerHTML = 0;
+      
     }, 100);
+    alert("Wrong answer, you idiot");
   }
   cardOfButton.removeEventListener("click", flipCard);
   
@@ -268,7 +269,7 @@ function cardTimedOut(cardIdentifier) {
   
   setTimeout(() => {
     
-    cardIdentifier.innerHTML = 0;
+    cardIdentifier.innerHTML = "";
   }, 100);
   cardIdentifier.removeEventListener("click", flipCard);
   
