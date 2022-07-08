@@ -217,7 +217,8 @@ function flipCard() {
   
   const cardIdentifier = firstButton.parentElement;
   console.log('parent element', cardIdentifier)
-  //trying to get fail state on music end
+  
+  //question fail on music end
   music.onended = function () {
     cardTimedOut(cardIdentifier);
   };
@@ -271,13 +272,13 @@ function cardTimedOut(cardIdentifier) {
   fail.play();
   music.pause();
   timerCount = 0;
-  
+  fail.play();
   const allCards = Array.from(document.querySelectorAll(".card"));
   allCards.forEach((card) => card.addEventListener("click", flipCard));
-  alert("YOU RAN OUT OF TIME");
+  alert("YOU LET THE TIME RUN OUT. DO YOU NOT UNDERSTAND THE RULES?");
   cardIdentifier.classList.add("wrong-answer");
   
-  fail.play();
+  
   
   setTimeout(() => {
     
