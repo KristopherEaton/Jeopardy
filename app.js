@@ -17,7 +17,7 @@ const jeopardyCategories = [
       },
       {
         question: "Who was born on Krypton",
-        answers: ["Aquaman", "Superman"],
+        answers: ["Aquaman", "Superman", "Batman"],
         correct: "Superman",
         level: "medium",
       },
