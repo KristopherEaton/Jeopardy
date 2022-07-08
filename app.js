@@ -3,8 +3,9 @@ const scoreDisplay = document.getElementById('score')
 const music = new Audio('jeopardyTune.mp3');
 const success = new Audio('success-sound-effect.mp3');
 const fail = new Audio('Fail-sound-effect.mp3');
-const timeLeft = 30;
+var timeLeft = 30;
 var elem = document.getElementById('timer')
+var timerId = setInterval(countdown, 1000);
 let score = 0
 
 const jeopardyCategories = [
@@ -169,6 +170,7 @@ jeopardyCategories.forEach((category) => addCategory(category))
 function flipCard() {
   music.load();
   music.play();
+  
   this.innerHTML = ''
   this.style.fontSize = '15px'
   this.style.lineHeight = '30px'
@@ -194,16 +196,19 @@ function flipCard() {
   secondButton.addEventListener('click', getResult)
   thirdButton.addEventListener('click', getResult)
   fourthButton.addEventListener('click', getResult)
+  
 
   this.append(textDisplay, firstButton, secondButton, thirdButton)
   textDisplay.innerHTML = this.getAttribute('data-question')
 
   const allCards = Array.from(document.querySelectorAll('.card'))
   allCards.forEach((card) => card.removeEventListener('click', flipCard))
+  countdown();
 }
 
 function getResult() {
   music.pause();
+  var timeleft = 30;
   const allCards = Array.from(document.querySelectorAll('.card'))
   allCards.forEach((card) => card.addEventListener('click', flipCard))
 
@@ -231,4 +236,14 @@ function getResult() {
     }, 100)
   }
   cardOfButton.removeEventListener('click', flipCard)
+}
+
+function countdown(){
+  if (timeLeft == -1){
+    clearTimeout(timerId);
+    
+  } else {
+    elem.innerHTML = timeLeft + ' seconds remaining';
+    timeLeft--;
+  }
 }
