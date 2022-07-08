@@ -6,8 +6,9 @@ const fail = new Audio("Fail-sound-effect.mp3");
 var timeLeft = 30;
 var elem = document.getElementById("timer");
 // jeopardyTune.mp3.onended = function() {
-//   getResult();
-// }
+//     alert("You have run out of time!")
+//   }
+
 var timerId = setInterval(countdown, 1000);
 let score = 0;
 
@@ -239,8 +240,15 @@ function getResult() {
       cardOfButton.innerHTML = cardOfButton.getAttribute("data-value");
     }, 100);
   }
-  if (timeLeft == 0) {
+  if (music.ended) {
     fail.play();
+    cardOfButton.classList.add("wrong-answer");
+    setTimeout(() => {
+      while (cardOfButton.firstChild) {
+        cardOfButton.removeChild(cardOfButton.lastChild);
+      }
+      cardOfButton.innerHTML = 0;
+    }, 100);
   } else {
     fail.play();
     cardOfButton.classList.add("wrong-answer");
