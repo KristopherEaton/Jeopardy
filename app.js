@@ -1,6 +1,8 @@
 const game = document.getElementById('game')
 const scoreDisplay = document.getElementById('score')
 const music = new Audio('jeopardyTune.mp3');
+const success = new Audio('success-sound-effect.mp3');
+const fail = new Audio('Fail-sound-effect.mp3');
 let score = 0
 
 const jeopardyCategories = [
@@ -9,7 +11,7 @@ const jeopardyCategories = [
     questions: [
       {
         question: 'A GFCI primarily reduces risk of...?',
-        answers: ['Chemical spills', 'Electrocution'],
+        answers: ['Chemical spills', 'Electrocution', 'Bear attacks'],
         correct: 'Electrocution',
         level: 'easy',
       },
@@ -107,7 +109,7 @@ const jeopardyCategories = [
       },
       {
         question: 'How many inches tall do toeboards need to be?',
-        answers: ['4', '12'],
+        answers: ['4', '12', '16'],
         correct: '4',
         level: 'medium',
       },
@@ -150,6 +152,9 @@ function addCategory(category) {
     card.setAttribute('data-question', question.question)
     card.setAttribute('data-answer-1', question.answers[0])
     card.setAttribute('data-answer-2', question.answers[1])
+    card.setAttribute('data-answer-3', question.answers[2])
+
+
     card.setAttribute('data-correct', question.correct)
     card.setAttribute('data-value', card.getInnerHTML())
     card.addEventListener('click', flipCard)
@@ -166,15 +171,24 @@ function flipCard() {
   this.style.lineHeight = '30px'
   const textDisplay = document.createElement('div')
   textDisplay.classList.add('card-text')
+  
   const firstButton = document.createElement('button')
   const secondButton = document.createElement('button')
+  const thirdButton = document.createElement('button')
+  
   firstButton.classList.add('first-button')
   secondButton.classList.add('second-button')
+  thirdButton.classList.add('third-button')
+  
   firstButton.innerHTML = this.getAttribute('data-answer-1')
   secondButton.innerHTML = this.getAttribute('data-answer-2')
+  thirdButton.innerHTML = this.getAttribute('data-answer-3')
+  
   firstButton.addEventListener('click', getResult)
   secondButton.addEventListener('click', getResult)
-  this.append(textDisplay, firstButton, secondButton)
+  thirdButton.addEventListener('click', getResult)
+
+  this.append(textDisplay, firstButton, secondButton, thirdButton)
   textDisplay.innerHTML = this.getAttribute('data-question')
 
   const allCards = Array.from(document.querySelectorAll('.card'))
@@ -189,6 +203,7 @@ function getResult() {
   const cardOfButton = this.parentElement
 
   if (cardOfButton.getAttribute('data-correct') == this.innerHTML) {
+    success.play();
     score = score + parseInt(cardOfButton.getAttribute('data-value'))
     scoreDisplay.innerHTML = score
     cardOfButton.classList.add('correct-answer')
@@ -199,6 +214,7 @@ function getResult() {
       cardOfButton.innerHTML = cardOfButton.getAttribute('data-value')
     }, 100)
   } else {
+    fail.play();
     cardOfButton.classList.add('wrong-answer')
     setTimeout(() => {
       while (cardOfButton.firstChild) {

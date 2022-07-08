@@ -33,11 +33,19 @@ body {
 }
 
 .first-button {
-  background-color: rgb(16, 16, 154);
+  background-color: rgb(255, 255, 255);
 }
 
 .second-button {
-  background-color: rgb(16, 16, 154);
+  background-color: rgb(255, 255, 255);
+}
+
+.third-button {
+  background-color: rgb(255, 255, 255);
+}
+
+.fourth-button {
+  background-color: rgb(255, 255, 255);
 }
 
 .genre-column {
