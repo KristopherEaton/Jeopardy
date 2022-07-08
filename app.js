@@ -3,6 +3,8 @@ const scoreDisplay = document.getElementById('score')
 const music = new Audio('jeopardyTune.mp3');
 const success = new Audio('success-sound-effect.mp3');
 const fail = new Audio('Fail-sound-effect.mp3');
+const timeLeft = 30;
+var elem = document.getElementById('timer')
 let score = 0
 
 const jeopardyCategories = [
@@ -45,9 +47,9 @@ const jeopardyCategories = [
         level: 'medium',
       },
       {
-        question: 'Where is Mount Kilamanjaro',
-        answers: ['Zimbabwe', 'Tanzania'],
-        correct: 'Tanzania',
+        question: 'Where is the OSHA headquarters?',
+        answers: ['Zimbabwe', 'Los angeles', 'Washington'],
+        correct: 'Washington',
         level: 'hard',
       },
     ],

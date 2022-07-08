@@ -7,14 +7,15 @@ body {
   color: rgb(255, 255, 255);
   display: flex;
   justify-content: center;
-  align-items: center;
+  /* align-items: center; */
+  margin-left: 5%;
   flex-direction: column;
   font-family: 'Anton', Arial, sans-serif;
 }
 
 .card {
   width: 260px;
-  height: 150px;
+  height: 180px;
   background-color: rgb(26, 26, 255);
   border-left: solid rgb(19, 19, 160) 10px;
   border-right: solid rgb(11, 11, 91) 10px;
@@ -25,6 +26,15 @@ body {
   margin: 5px;
   padding: 10px;
   line-height: 120px;
+}
+
+.title{
+  margin: auto;
+  background-color: blue;
+  width: fit-content;
+  padding: 0px 20px 0px 20px;
+  border-radius: 10px;
+  text-align: center;
 }
 
 #game {
@@ -60,6 +70,10 @@ body {
   font-size: 28px;
   padding: 5px;
   margin: 5px;
+}
+
+.timer {
+  font-size: 16px;
 }
 
 .correct-answer {
