@@ -3,6 +3,11 @@ const scoreDisplay = document.getElementById("score");
 const music = new Audio("jeopardyTune.mp3");
 const success = new Audio("success-sound-effect.mp3");
 const fail = new Audio("Fail-sound-effect.mp3");
+const intro = new Audio("intro.mp3");
+
+alert("Welcome to Jeopardy!! Are you ready to play?");
+
+
 let score = 0;
 
 const jeopardyCategories = [
@@ -137,6 +142,8 @@ const jeopardyCategories = [
 ];
 
 function addCategory(category) {
+  intro.load();
+  intro.play();
   const column = document.createElement("div");
   column.classList.add("genre-column");
 
