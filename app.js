@@ -5,11 +5,9 @@ const success = new Audio("success-sound-effect.mp3");
 const fail = new Audio("Fail-sound-effect.mp3");
 var timeLeft = 30;
 var elem = document.getElementById("timer");
-// jeopardyTune.mp3.onended = function() {
-//     alert("You have run out of time!")
-//   }
 
-var timerId = setInterval(countdown, 1000);
+
+
 let score = 0;
 
 const jeopardyCategories = [
@@ -186,7 +184,7 @@ jeopardyCategories.forEach((category) => addCategory(category));
 function flipCard() {
   music.load();
   music.play();
-
+  var timerId = setInterval(countdown, 1000);
   this.innerHTML = "";
   this.style.fontSize = "15px";
   this.style.lineHeight = "30px";
@@ -222,7 +220,8 @@ function flipCard() {
 
 function getResult() {
   music.pause();
-  var timeleft = 30;
+  timeLeft = 0;
+  
   const allCards = Array.from(document.querySelectorAll(".card"));
   allCards.forEach((card) => card.addEventListener("click", flipCard));
 
@@ -239,16 +238,6 @@ function getResult() {
       }
       cardOfButton.innerHTML = cardOfButton.getAttribute("data-value");
     }, 100);
-  }
-  if (music.ended) {
-    fail.play();
-    cardOfButton.classList.add("wrong-answer");
-    setTimeout(() => {
-      while (cardOfButton.firstChild) {
-        cardOfButton.removeChild(cardOfButton.lastChild);
-      }
-      cardOfButton.innerHTML = 0;
-    }, 100);
   } else {
     fail.play();
     cardOfButton.classList.add("wrong-answer");
@@ -260,7 +249,14 @@ function getResult() {
     }, 100);
   }
   cardOfButton.removeEventListener("click", flipCard);
+  stopTimer();
 }
+
+// experimenting with triggering event once music ends
+music.onended = function () {
+  alert("You have run out of time!");
+  
+};
 
 function countdown() {
   if (timeLeft == -1) {
@@ -269,4 +265,8 @@ function countdown() {
     elem.innerHTML = timeLeft + " seconds remaining";
     timeLeft--;
   }
+}
+
+function stopTimer(){
+  clearInterval(timerId)
 }
