@@ -180,16 +180,19 @@ function flipCard() {
   music.load();
   music.play();
   
+  
   this.innerHTML = "";
   this.style.fontSize = "15px";
   this.style.lineHeight = "30px";
-  const textDisplay = document.createElement("div");
+  const textDisplay = document.createElement("text-div");
   textDisplay.classList.add("card-text");
+  
 
   const firstButton = document.createElement("button");
   const secondButton = document.createElement("button");
   const thirdButton = document.createElement("button");
   const fourthButton = document.createElement("button");
+  
 
   firstButton.classList.add("first-button");
   secondButton.classList.add("second-button");
@@ -212,13 +215,11 @@ function flipCard() {
   const allCards = Array.from(document.querySelectorAll(".card"));
   allCards.forEach((card) => card.removeEventListener("click", flipCard));
   
+  const cardIdentifier = firstButton.parentElement;
+  console.log('parent element', cardIdentifier)
   //trying to get fail state on music end
   music.onended = function () {
-    alert("YOU RAN OUT OF TIME");
-    cardTimedOut();
-    
-    const cardOfButton = this.parentElement;
-    cardOfButton.classList.add("wrong-answer");
+    cardTimedOut(cardIdentifier);
   };
 }
 
@@ -253,18 +254,23 @@ function getResult() {
   
 }
 
-function cardTimedOut() {
+function cardTimedOut(cardIdentifier) {
+  fail.play();
   music.pause();
   timerCount = 0;
+  
   const allCards = Array.from(document.querySelectorAll(".card"));
   allCards.forEach((card) => card.addEventListener("click", flipCard));
+  alert("YOU RAN OUT OF TIME");
+  cardIdentifier.classList.add("wrong-answer");
+  
   fail.play();
+  
   setTimeout(() => {
-    while (cardOfButton.firstChild) {
-      cardOfButton.removeChild(cardOfButton.lastChild);
-    }
-    cardOfButton.innerHTML = 0;
+    
+    cardIdentifier.innerHTML = 0;
   }, 100);
-  cardOfButton.removeEventListener("click", flipCard);
+  cardIdentifier.removeEventListener("click", flipCard);
+  
   
 }
